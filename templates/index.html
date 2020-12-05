@@ -2,5 +2,12 @@
 {% extends "base.html" %}
 
 {% block body %}
+<table>
+    {% for row in data %}
+    <tr>
+        <td> {{row.emissions_1990}}  {{ row.emission_2005 }} </td>
+    </tr>
+    {% endfor %}
+</table> 
 
 {% endblock %}

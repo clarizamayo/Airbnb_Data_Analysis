@@ -1,6 +1,7 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-
+from flask_sqlalchemy import SQLAlchemy 
+from flask import render_template, jsonify,request
+import requests
 
 app = Flask(__name__)
 
@@ -39,12 +40,8 @@ class Population(db.Model):
 # you can choose to output data on this page
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
-
-# # include other views that return html here:
-@app.route('/other')
-def other():
-    return render_template('other.html')
+    data = Emissions.query.all()
+    return render_template('index.html', data=data)
 
 # set up the following views to allow users to make
 # GET requests to get your data in json
@@ -54,16 +51,19 @@ def other():
 # change this to return your data
 @app.route('/api', methods=['GET'])
 def get_data():
-    table = DBTable.query.all()
-    d = {row.column_1:row.column_2 for row in table}
+    table = Emissions.query.all()
+    d = {row.id:row.name for row in table}
     return jsonify(d)
 
 # # change this to allow users to add/update data
 @app.route('/api', methods=['POST'])
 def add_data():
-    for k,v in request.args.items():
-        pass
-    return jsonify({})
+    if request.method == "POST":
+        print(request.form)
+        for k,v in request.args.items():
+            print(k,v)
+            # pass
+        return jsonify({})
         
 # # change this to allow the deletion of data
 @app.route('/api', methods=['DELETE'])
