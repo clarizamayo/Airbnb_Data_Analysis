@@ -1,13 +1,37 @@
-
-{% extends "base.html" %}
-
-{% block body %}
-<table>
-    {% for row in data %}
-    <tr>
-        <td> {{row.emissions_1990}}  {{ row.emission_2005 }} </td>
-    </tr>
-    {% endfor %}
-</table> 
-
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>The impact of Emissions</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css" media="screen"/>
+</head>
+<body> 
+    <div class= "banner">
+            <div class= "title">
+                <h1>What are Emissions?</h1>
+                <a href="/">HomePage</a>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="/templates/index.html">Introduction</a></li>
+                    <li><a href="/templates/render.html">Emissions Table</a></li>
+                    <li><a href="/templates/render2.html">Population Table</a></li>
+                </ul>
+            </div>
+      
+    <h2>Why do carbon dioxide emissions heat up the planet?</h2>
+    
+    <p>The temperature of the Earth depends on a balance between incoming energy from the Sun and the energy that bounces back into space. Carbon dioxide absorbs heat that would otherwise be lost to space. Some of this energy is re-emitted back to Earth, causing additional heating of the planet.</p>
+    
+    <h2>What are the major sources of carbon dioxide?</h2>
+    
+    <p class="EmiText">Most man-made carbon emissions come from burning fossil fuels for energy. In the UK, the biggest emitters are from transport and the domestic sectors, of which aviation is the fastest growing. Because of their varying chemical constituents, different fossil fuels produce different amounts of carbon dioxide. Coal produces most, then oil, and then gas.</p>
+    
+    <h2>Which country produces most carbon?</h2>
+    
+    <p class="EmiText">The US emits the most: 5,800 million tonnes every year. Next is China, over 3,000; Russia, over 2,000; Japan, 1,200; and India, 1,000 million tonnes. Other major emitters are Germany, 800; Canada, 600m; the UK, 500m; and Italy, 47m.</p>
+   
+    <div class="footer">
+        <p>Copyright 2020 ClarizaMayo</p>
+    </div>
+</body>
+</html>

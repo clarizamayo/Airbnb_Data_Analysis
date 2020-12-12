@@ -1,11 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" media="screen"/>
+  <head> 
+      <title>About Me</title>
+      <link rel="stylesheet" type="text/css" href="/static/style.css" media="screen"/>
   </head>
   <body>
-    {% block body %}{% endblock %}
+    <div class= "banner">
+      <div class= "title">
+        <h1>About Me</h1>
+        <a href="/">HomePage</a>
+      </div>
+      <div class="nav">
+        <ul>
+          <li><a href="/templates/index.html">Introduction</a></li>
+          <li><a href="/templates/render.html">Emissions Table</a></li>
+          <li><a href="/templates/render2.html">Population Table</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="about-me">
+      <div class="profile">
+        <img src="https://media-exp1.licdn.com/dms/image/C5603AQEvCGLdW95hBg/profile-displayphoto-shrink_200_200/0/1589594152693?e=1611792000&v=beta&t=GZfP87HRpy6CbblqYkpd_lMqIH2WTayGY7otK02yVeQ" alt="LinkedIn Profile Picture" width="300">
+        <div class="social-media">
+          <ul>
+              <li><img src= "https://image.flaticon.com/icons/svg/61/61109.svg" alt="Linkedin" class="logo" style="width:20px;height:20px;"> 
+              <a href=https://www.linkedin.com/in/clarizamayo>Linkedin</a></li>
+              <li><img src= "https://upload.wikimedia.org/wikipedia/commons/c/c6/Font_Awesome_5_brands_github-square.svg" alt="Github" class="logo"style="width:25px;height:25px;"> 
+                  <a href=https://github.com/clarizamayo/TKH_Modules>Github</a></li>
+          </ul>
+        </div>
+      </div>
+        <div class="about-me-text">
+            <h2>About Me</h2>
+            <p>My name is Clariza and I am 27 years old. 
+            My hobbies include reading, listening to music and playing mind games. I also enjoy walking and going to the park. I live about two blocks from the park and being able to watch the sunset at the waterfront. My current goal is to improve my coding skills so that I can surprise myself with what I can create.</p>
+        </div>
+    </div>
+      <div class="contact-form">
+          <h2>Contact Me!</h2>
+          <form class="contact">
+              <label for="name">Name:</label><br>
+              <input type="text" name="name"><br>
+              <label for="email">Email:</label><br>
+              <input type="text" name="email"><br>
+              <label for="message"> Your message</label><br>
+              <input type="text" name="message"><br>
+              <input type="submit"name="Contact"><br>
+          </form>
+      </div> 
+      <div class="footer">
+          <p>Copyright 2020 ClarizaMayo</p>
+      </div>
   </body>
+  <table>
+    {% block body %}{% endblock %}
+  </table>
 </html>
-

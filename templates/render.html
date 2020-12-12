@@ -1,26 +1,58 @@
+
 <!DOCTYPE html>
 <html>
 <head>
- <title></title>
+ <title>Emissions by Country</title>
+ <link rel="stylesheet" type="text/css" href="/static/style.css" media="screen"/>
 </head>
 <body>
+    <div class= "banner">
+        <div class= "title">
+            <h1>Emissions Table</h1>
+            <a href="/">HomePage</a>
+        </div>
+        <div class="nav">
+            <ul>
+            <li><a href="/templates/index.html">Introduction</a></li>
+            <li><a href="/templates/render.html">Emissions Table</a></li>
+            <li><a href="/templates/render2.html">Population Table</a></li>
+            </ul>
+        </div>
+    </div>
+    <p>Data is being scraped from:</p> 
+    <a class="website" href="https://en.wikipedia.org/wiki/List_of_countries_by_carbon_dioxide_emissions">Wikipedia</a>
 <style>
- 
- td {
-        width: 150px;
-        text-align: center;
-        border: 1px solid black;
-        padding: 5px;
-      }
 </style>
 <table>
-    {% for row in data %}
-    <tr>
-        {% for elem in row %}
-        <td> {{ elem }} </td>
+    <thead>
+        <tr>
+            <th>{{ "Country Name" }}</th>
+            <th>{{ 1990 }}</th>
+            <th>{{ 2005 }}</th>
+            <th>{{ 2017 }}</th>
+            <th>{{ "Percentage of world Emmisions" }}</th>
+            <th>{{ "2017 vs 1990 Percentage Change" }}</th>
+            <th>{{ "Per Land Area" }}</th>
+            <th>{{ "Per Capita" }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+        <tr> 
+            <td> {{ row.name }} </td>
+            <td>{{ row.emission_1990 }}</td>
+            <td>{{ row.emission_2005}}</td>
+            <td>{{ row.emission_2017 }}</td>
+            <td>{{ row.perc_world_emissions }}</td>
+            <td>{{ row.perc_change_2017_2019 }}</td>
+            <td>{{ row.per_land_area }}</td>
+            <td>{{ row.per_capita }}</td>
+        </tr>
         {% endfor %}
-    </tr>
-    {% endfor %}
+    </tbody>
 </table> 
 </body>
 </html>
+<!-- 
+Percentage of world Emmisions	2017 vs 1990 Percentage Change	Per Land Area	Per Capita -->
+<!-- d = {row.name:[row.emission_1990,row.emission_2005,row.emission_2017,row.perc_world_emissions,row.perc_change_2017_2019, row.per_land_area, row.per_capita] for row in table} -->

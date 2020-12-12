@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Country Population</title>
+ <link rel="stylesheet" type="text/css" href="/static/style.css" media="screen"/>
+</head>
+<body>
+    <div class= "banner">
+        <div class= "title">
+            <h1>Population Table</h1>
+            <a href="/">HomePage</a>
+        </div>
+        <div class="nav">
+            <ul>
+            <li><a href="/templates/index.html">Introduction</a></li>
+            <li><a href="/templates/render.html">Emissions Table</a></li>
+            <li><a href="/templates/render2.html">Population Table</a></li>
+            </ul>
+        </div>
+    </div>
+    <p>Data is being scraped from:</p> 
+    <a class="website" href="https://en.wikipedia.org/wiki/List_of_countries_by_population_in_2005">Wikipedia</a>
+<style>
+</style>
+<table>
+    <thead>
+        <tr>
+            <th>{{ "Country Name" }}</th>
+            <th>{{ "Population" }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+        <tr> 
+            <td> {{ row.name }} </td>
+            <td>{{ row.population }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table> 
+</body>
+</html>

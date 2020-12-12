@@ -31,31 +31,31 @@ class Population(db.Model):
     name = db.Column(db.String(255), nullable=True) 
     population = db.Column(db.Integer, nullable=True)
 
-
-# set up your index view to show your "home" page
-# it should include:
-# links to any pages you have
-# information about your data
-# information about how to access your data
-# you can choose to output data on this page
 @app.route('/', methods=['GET'])
+def welcome():
+    return render_template('base.html')
+
+@app.route('/templates/index.html', methods=['GET'])
 def index():
+    return render_template('index.html')
+
+@app.route('/templates/render.html', methods=['GET'])
+def table1():
     data = Emissions.query.all()
-    return render_template('index.html', data=data)
+    return render_template('render.html', data=data)
 
-# set up the following views to allow users to make
-# GET requests to get your data in json
-# POST requests to store/update some data
-# DELETE requests to delete some data
+@app.route('/templates/render2.html', methods=['GET'])
+def table2():
+    data = Population.query.all()
+    return render_template('render2.html', data=data)
 
-# change this to return your data
 @app.route('/api', methods=['GET'])
 def get_data():
     table = Emissions.query.all()
-    d = {row.id:row.name for row in table}
+    d = {row.name:[row.emission_1990,row.emission_2005,row.emission_2017,row.perc_world_emissions,row.perc_change_2017_2019, row.per_land_area, row.per_capita] for row in table}
     return jsonify(d)
 
-# # change this to allow users to add/update data
+
 @app.route('/api', methods=['POST'])
 def add_data():
     if request.method == "POST":
@@ -65,7 +65,7 @@ def add_data():
             # pass
         return jsonify({})
         
-# # change this to allow the deletion of data
+
 @app.route('/api', methods=['DELETE'])
 def delete_data():
     for k,v in request.args.items():
