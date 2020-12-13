@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +12,10 @@
         </div>
         <div class="nav">
             <ul>
-            <li><a href="/templates/index.html">Introduction</a></li>
-            <li><a href="/templates/render.html">Emissions Table</a></li>
-            <li><a href="/templates/render2.html">Population Table</a></li>
+            <li><a href="/CO2">About CO2 Emissions</a></li>
+            <li><a href="/api">Api</a></li>
+            <li><a href="/EmissionsTable">Emissions Table</a></li>
+            <li><a href="/PopulationTable">Population Table</a></li>
             </ul>
         </div>
     </div>
@@ -31,7 +31,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for row in data %}
+        {% for row in data[1:] %}
         <tr> 
             <td> {{ row.name }} </td>
             <td>{{ row.population }}</td>

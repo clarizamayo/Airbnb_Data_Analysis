@@ -1,4 +1,3 @@
-
 from app import db, Emissions    #import the Class from the app.py file
 from app import db, Population   #importing my second Class from the app.py file
 from emission import co2_emissions   #import the scraping function from the emission.py file
@@ -10,7 +9,7 @@ pop_url = "https://en.wikipedia.org/wiki/List_of_countries_by_population_in_2005
 
 emission_table = co2_emissions(emiss_url)   #setting up my funcs and passing the url link that is being scraped into a variable
 population_table = world_pop_2005(pop_url)  #setting up my funcs and passing the url link that is being scraped into a variable
-
+  
 # this `main` function should run your scraping when 
 # this script is ran.
 def main():
