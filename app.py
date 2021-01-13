@@ -28,7 +28,7 @@ class Emissions(db.Model):
 class Population(db.Model):
     __tablename__ = "World Population in 2005"
     id = db.Column(db.Integer, primary_key=True)  
-    name = db.Column(db.String(255), nullable=True) 
+    name = db.Column(db.String(255), nullable=True)
     population = db.Column(db.Integer, nullable=True)
 
 @app.route('/', methods=['GET'])
