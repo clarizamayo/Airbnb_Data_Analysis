@@ -6,8 +6,9 @@
         3. Make it efficient
 """
 from flask import Flask, request, render_template, session, redirect
-from import_script import get_stroke_data
 from flask_sqlalchemy import SQLAlchemy 
+
+from get_data import get_stroke_data
 
 app = Flask(__name__)
 app.config["ENV"] = 'development'
@@ -22,58 +23,66 @@ s = get_stroke_data()
 class Stroke(db.Model):
     __tablename__ = "stroke_data"
     id = db.Column(db.Integer, primary_key=True)  
-    name = db.Column(db.String(255), nullable=True) 
-    emission_1990 = db.Column(db.Float, nullable=True)
-    emission_2005 = db.Column(db.Float, nullable=True)
-    emission_2017 = db.Column(db.Float, nullable=True)
-    perc_world_emissions = db.Column(db.Integer, nullable=True)
-    perc_change_2017_2019 = db.Column(db.Integer, nullable=True)
-    per_land_area = db.Column(db.Integer, nullable=True)
-    per_capita = db.Column(db.Integer, nullable=True)
+    gender = db.Column(db.String(255), nullable=True) 
+    age = db.Column(db.Integer, nullable=True)
+    hypertension = db.Column(db.Integer, nullable=True)
+    heart_disease = db.Column(db.Integer, nullable=True)
+    ever_married = db.Column(db.String(255), nullable=True)
+    work_type = db.Column(db.String(255), nullable=True)
+    residence_type = db.Column(db.String(255), nullable=True)
+    avg_glucose_level = db.Column(db.Float, nullable=True)
+    bmi = db.Column(db.Float, nullable=True)
+    smoking_status = db.Column(db.String(255), nullable=True)
+    stroke = db.Column(db.Integer, nullable=True)
 
 @app.route('/', methods=("POST", "GET"))
-def html_table():
-    stroke = next(s)
-    return render_template('simple.html',  tables=[stroke.to_html(classes='data')], titles=stroke.columns.values)
+def homepage():
+    return f"This route is working"
 
-def test_get_gender():
-    test_case = """
-    {"id":{"0":9046,"2":31112,"5":56669,"6":53882,"13":8213,"16":56112,"17":34120,"19":25226,"23":64778,"24":4219},"gender":{"0":"Male","2":"Male","5":"Male","6":"Male","13":"Male","16":"Male","17":"Male","19":"Male","23":"Male","24":"Male"},"age":{"0":67.0,"2":80.0,"5":81.0,"6":74.0,"13":78.0,"16":64.0,"17":75.0,"19":57.0,"23":82.0,"24":71.0},"hypertension":{"0":0,"2":0,"5":0,"6":1,"13":0,"16":0,"17":1,"19":0,"23":0,"24":0},"heart_disease":{"0":1,"2":1,"5":0,"6":1,"13":1,"16":1,"17":0,"19":1,"23":1,"24":0},"ever_married":{"0":"Yes","2":"Yes","5":"Yes","6":"Yes","13":"Yes","16":"Yes","17":"Yes","19":"No","23":"Yes","24":"Yes"},"work_type":{"0":"Private","2":"Private","5":"Private","6":"Private","13":"Private","16":"Private","17":"Private","19":"Govt_job","23":"Private","24":"Private"},"Residence_type":{"0":"Urban","2":"Rural","5":"Urban","6":"Rural","13":"Urban","16":"Urban","17":"Urban","19":"Urban","23":"Rural","24":"Urban"},"avg_glucose_level":{"0":228.69,"2":105.92,"5":186.21,"6":70.09,"13":219.84,"16":191.61,"17":221.29,"19":217.08,"23":208.3,"24":102.87},"bmi":{"0":36.6,"2":32.5,"5":29.0,"6":27.4,"13":null,"16":37.5,"17":25.8,"19":null,"23":32.5,"24":27.2},"smoking_status":{"0":"formerly smoked","2":"never smoked","5":"formerly smoked","6":"never smoked","13":"Unknown","16":"smokes","17":"smokes","19":"Unknown","23":"Unknown","24":"formerly smoked"},"stroke":{"0":1,"2":1,"5":1,"6":1,"13":1,"16":1,"17":1,"19":1,"23":1,"24":1}}
-    """
 
-    test_data = pd.read_csv("healthcare-dataset-stroke-data.csv")
-    return_data = get_gender("Male", test_data)
-    assert return_data[:10].to_json() == test_case.strip()
+# @app.route('/', methods=("POST", "GET"))
+# def html_table():
+#     stroke = next(s)
+#     return render_template('simple.html',  tables=[stroke.to_html(classes='data')], titles=stroke.columns.values)
 
-def get_gender(gender, stroke):
-    # other processing goes here
-    if gender not in ["Male", "Female"]:
-        raise Exception("Expected Male or Female")
-    return stroke[stroke["gender"] == gender]
+# def test_get_gender():
+#     test_case = """
+#     {"id":{"0":9046,"2":31112,"5":56669,"6":53882,"13":8213,"16":56112,"17":34120,"19":25226,"23":64778,"24":4219},"gender":{"0":"Male","2":"Male","5":"Male","6":"Male","13":"Male","16":"Male","17":"Male","19":"Male","23":"Male","24":"Male"},"age":{"0":67.0,"2":80.0,"5":81.0,"6":74.0,"13":78.0,"16":64.0,"17":75.0,"19":57.0,"23":82.0,"24":71.0},"hypertension":{"0":0,"2":0,"5":0,"6":1,"13":0,"16":0,"17":1,"19":0,"23":0,"24":0},"heart_disease":{"0":1,"2":1,"5":0,"6":1,"13":1,"16":1,"17":0,"19":1,"23":1,"24":0},"ever_married":{"0":"Yes","2":"Yes","5":"Yes","6":"Yes","13":"Yes","16":"Yes","17":"Yes","19":"No","23":"Yes","24":"Yes"},"work_type":{"0":"Private","2":"Private","5":"Private","6":"Private","13":"Private","16":"Private","17":"Private","19":"Govt_job","23":"Private","24":"Private"},"Residence_type":{"0":"Urban","2":"Rural","5":"Urban","6":"Rural","13":"Urban","16":"Urban","17":"Urban","19":"Urban","23":"Rural","24":"Urban"},"avg_glucose_level":{"0":228.69,"2":105.92,"5":186.21,"6":70.09,"13":219.84,"16":191.61,"17":221.29,"19":217.08,"23":208.3,"24":102.87},"bmi":{"0":36.6,"2":32.5,"5":29.0,"6":27.4,"13":null,"16":37.5,"17":25.8,"19":null,"23":32.5,"24":27.2},"smoking_status":{"0":"formerly smoked","2":"never smoked","5":"formerly smoked","6":"never smoked","13":"Unknown","16":"smokes","17":"smokes","19":"Unknown","23":"Unknown","24":"formerly smoked"},"stroke":{"0":1,"2":1,"5":1,"6":1,"13":1,"16":1,"17":1,"19":1,"23":1,"24":1}}
+#     """
 
-@app.route('/api/gender/<gender>')
-def get_gender_api(gender):
-    try:
-        stroke = next(s)
-        return get_gender(gender, stroke).to_json()
-    except Exception as e:
-        return str(e), 400
+#     test_data = pd.read_csv("healthcare-dataset-stroke-data.csv")
+#     return_data = get_gender("Male", test_data)
+#     assert return_data[:10].to_json() == test_case.strip()
 
-@app.route('/gender/<gender>')
-def get_gender_table(gender):
-    try:
-        stroke = next(s)
-        return get_gender(gender, stroke).to_html()
-    except Exception as e:
-        return str(e), 400
+# def get_gender(gender, stroke):
+#     # other processing goes here
+#     if gender not in ["Male", "Female"]:
+#         raise Exception("Expected Male or Female")
+#     return stroke[stroke["gender"] == gender]
 
-@app.route('/test/gender')
-def test_gender_route():
-    try:
-        test_get_gender()
-        return "Success", 200
-    except:
-        return "Failed", 400
+# @app.route('/api/gender/<gender>')
+# def get_gender_api(gender):
+#     try:
+#         stroke = next(s)
+#         return get_gender(gender, stroke).to_json()
+#     except Exception as e:
+#         return str(e), 400
+
+# @app.route('/gender/<gender>')
+# def get_gender_table(gender):
+#     try:
+#         stroke = next(s)
+#         return get_gender(gender, stroke).to_html()
+#     except Exception as e:
+#         return str(e), 400
+
+# @app.route('/test/gender')
+# def test_gender_route():
+#     try:
+#         test_get_gender()
+#         return "Success", 200
+#     except:
+#         return "Failed", 400
 
 """
     Each function should have a single responsibility/perform a single sort of action
