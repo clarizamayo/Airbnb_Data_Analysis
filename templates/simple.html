@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+ <link rel="stylesheet" type="text/css" href="/static/style.css" media="screen"/>
+</head>
+<body>
+<style>
+</style>
+<table>
+    <thead>
+        <tr>
+            <th>{{ "Country Name" }}</th>
+            <th>{{ "Population" }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+        <tr> 
+            <td> {{ row.name }} </td>
+            <td>{{ row.population }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table> 
+</body>
+</html>
