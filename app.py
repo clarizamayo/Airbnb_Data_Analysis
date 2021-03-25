@@ -9,6 +9,8 @@ from flask import Flask, request, render_template, session, redirect
 from flask_sqlalchemy import SQLAlchemy 
 
 from get_data import get_stroke_data
+from get_data import creating_db
+from get_data import check_db
 
 app = Flask(__name__)
 app.config["ENV"] = 'development'
@@ -19,21 +21,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
   
 s = get_stroke_data()
-
-class Stroke(db.Model):
-    __tablename__ = "stroke_data"
-    id = db.Column(db.Integer, primary_key=True)  
-    gender = db.Column(db.String(255), nullable=True) 
-    age = db.Column(db.Integer, nullable=True)
-    hypertension = db.Column(db.Integer, nullable=True)
-    heart_disease = db.Column(db.Integer, nullable=True)
-    ever_married = db.Column(db.String(255), nullable=True)
-    work_type = db.Column(db.String(255), nullable=True)
-    residence_type = db.Column(db.String(255), nullable=True)
-    avg_glucose_level = db.Column(db.Float, nullable=True)
-    bmi = db.Column(db.Float, nullable=True)
-    smoking_status = db.Column(db.String(255), nullable=True)
-    stroke = db.Column(db.Integer, nullable=True)
+db = creating_db()
 
 @app.route('/', methods=("POST", "GET"))
 def homepage():
