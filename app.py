@@ -18,20 +18,17 @@ app.config["SECRET_KEY"]=b'_5#y2L"F4Q7zeec]/'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///stroke_data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  
-db = SQLAlchemy(app)
-  
-s = get_stroke_data()
-db = creating_db()
 
 @app.route('/', methods=("POST", "GET"))
 def homepage():
     return f"This route is working"
 
 
-# @app.route('/', methods=("POST", "GET"))
-# def html_table():
-#     stroke = next(s)
-#     return render_template('simple.html',  tables=[stroke.to_html(classes='data')], titles=stroke.columns.values)
+@app.route('/airbnb2017', methods=("POST", "GET"))
+def html_table():
+    data= check_db("airbnb2017").query.all()
+    print(data)
+    return render_template('simple.html', data=data)
 
 # def test_get_gender():
 #     test_case = """
