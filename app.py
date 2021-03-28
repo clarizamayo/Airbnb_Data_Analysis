@@ -5,9 +5,9 @@
         (though it is easy to get functionality to work if your code is well organized)
         3. Make it efficient
 """
+import pandas as pd
 from flask import Flask, request, render_template, session, redirect
 from flask_sqlalchemy import SQLAlchemy 
-
 from get_data import get_stroke_data
 from get_data import creating_db
 from get_data import check_db
@@ -26,8 +26,9 @@ def homepage():
 
 @app.route('/airbnb2017', methods=("POST", "GET"))
 def html_table():
-    data= check_db("airbnb2017").query.all()
-    print(data)
+    col_names = ["index", "id","host_response_time","host_response_rate","host_is_superhost","host_has_profile_pic","neighbourhood_cleansed","latitude","longitude","is_location_exact","property_type","room_type","accommodates","bathrooms","bedrooms","beds","bed_type","amenities","square_feet","price","guests_included","minimum_nights","maximum_nights","calendar_updated","availability_30","number_of_reviews","review_scores_rating","instant_bookable","is_business_travel_ready","cancellation_policy","require_guest_profile_picture","reviews_per_month"]
+    data= pd.DataFrame(check_db("airbnb2017"),columns=col_names)
+    print(data['id'][1])
     return render_template('simple.html', data=data)
 
 # def test_get_gender():

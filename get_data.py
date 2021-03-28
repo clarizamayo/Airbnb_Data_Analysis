@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-# import requests
 import datetime
 import kaggle
 
@@ -42,6 +41,7 @@ def creating_db():
 def check_db(table_name):
     with engine.connect() as conn:
         rows = conn.execute(f"SELECT * FROM {table_name};")
+        return [row for row in rows]
 
 if (__name__ == "__main__"):
      creating_db()
