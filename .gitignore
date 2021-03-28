@@ -10,6 +10,7 @@ ENV/
 
 # Python
 *.pyc
+__pycache__/
 
 # Jupyter Notebook
 .ipynb_checkpoints
