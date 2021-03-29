@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-# import requests
 import datetime
 import kaggle
 
@@ -39,16 +38,11 @@ def creating_db():
     moving_opennyc_to_db = open_nyc.to_sql('opennyc', con=engine, if_exists='append')
     moving_airbnb2017_to_db = airbnb2017.to_sql('airbnb2017', con=engine, if_exists='append')
 
-def check_db():
-    with engine.connect() as conn:
-        rows = conn.execute("SELECT * FROM stroke;")
-        for row in rows:
-            print(row)
+def check_db(table_name):
+    df= pd.read_sql_table(table_name, con=engine)
+    while True:
+        yield df
 
 if (__name__ == "__main__"):
      creating_db()
-    #  check_db()
-
-#To autenticate kaggle
-# export KAGGLE_USERNAME=clarizamayo
-# export KAGGLE_KEY=35e52457b36e90c1f9cc6da6459859c7
+     check_db(table_name)
