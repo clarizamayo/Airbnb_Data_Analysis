@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <h1>Updated Airbnb October 2017 Dataset</h1>
+    <style>
+    </style>
+    <table>
+        <thead>
+            <th>{{ "Index" }}</th>
+            <th>{{ "Host Id" }}</th>
+            <th>{{ "Is Host a Superhost?" }}</th>
+            <th>{{ "Has Host Profile Picture" }}</th>
+            <th>{{ "Neighbourhood" }}</th>
+            <th>{{ "Latitude"}}</th>
+            <th>{{ "Longitude" }}</th>
+            <th>{{ "Is Location Exact?" }}</th>
+            <th>{{ "Property Type" }}</th>
+            <th>{{ "Room Type" }}</th>
+            <th>{{ "Accommodates" }}</th>
+            <th>{{ "Bathrooms" }}</th>
+            <th>{{ "Bedrooms" }}</th>
+            <th>{{ "Number of Beds" }}</th>
+            <th>{{ "Bed type" }}</th>
+            <th>{{ "Amenities" }}</th>
+            <th>{{ "Price" }}</th>
+            <th>{{ "Number of Guests included?" }}</th>
+            <th>{{ "Minimun Nights" }}</th>
+            <th>{{ "Maximun Nights" }}</th>
+            <th>{{ "Availability updated" }}</th>
+            <th>{{ "Montly Availability" }}</th>
+            <th>{{ "Number of Reviews" }}</th>
+            <th>{{ "Review Rating" }}</th>
+            <th>{{ "Can it be Instantly Bookable" }}</th>
+            <th>{{ "Business Travel Ready" }}</th>
+            <th>{{ "Cancellation Policy" }}</th>
+            <th>{{ "Require Guess profile Picture" }}</th>
+            <th>{{ "Monthly Reviews" }}</th>
+            <th>{{ "Borough" }}</th>
+            <th>{{ "Wifi Access" }}</th>
+        </thead>
+        <tbody>
+            {% for row in data[:100] %}
+            <tr>
+                {% for key,value in row.items() %}
+                <td> {{ value }} </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+{% endblock %}
+
+</html>

@@ -3,127 +3,33 @@
     --second-color: #f5f5f5;
     --third-color: #990099;
     --fourth-color: black;
-    --font: 'Quicksand';
+    --font: sans-serif;
     --shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 } 
 html{
     font-size: calc(1em + 1vw);
 }
-button{
-    font-size: inherit;
-}
-input{
-    font-size: inherit;
-}
-input{
-    min-width: 30vw;
-    margin-bottom: 15px;
-    margin-top: 5px;
-    padding: 0.5 rem;
-}
-input[type="submit"]{
-    background-color: var(--third-color);
-    color: var(--first-color);
-    padding: 10px;
-    width: calc(30vw + 0.5rem);
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-}
-input[type="submit"]:hover{
-    transition: all 0.3s cubic-bezier(0.25,0.8,0.25, 1);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
 body{
     font-family:var(--font);
     margin:0;
-    background-color:var(--first-color);
+    background-color:#f7f7f7;
     padding-top: 4rem;
     display:grid;
     justify-items: center;
 }
-p{
-    color: var(--third-color);
-    font-weight: 400;
-    margin-left: 1em;
-}
-h2{
+h1{
     text-align: center;
-    padding: 0.1rem;
-    margin: 0.1rem;
-    border-radius: 6px;
-    background-color: var(--second-color);
-    box-shadow: var(--shadow);  
-    color:#034f84;
-}
-.title{
-    margin-left: 1em;
-    text-align: center;
-    font-size: 0.75em;
-    color: var(--fourth-color);
-}
-a{
-    color: var(--third-color);
-    width: 100px;
-    text-decoration: none;
-}
-a:hover{
-    color: var(--first-color);
-}
-.banner ul{
-    list-style-type: none;
-}
-.banner li{
-    display: inline;
-    margin: 1rem;
-}
-.banner{
-    width: 100%;
-    display:flex;
-    flex-flow: wrap;
-    align-items: center;
-    list-style-type: none;
-    background-color: lightblue;
-    position: fixed;
-    top: 0;
-    color: var(--third-color);
-    box-shadow: var(--shadow);
-}
-.about-me{
-    display: flex;
-    width: 80vw;
-    padding: 1rem;
-    margin: 0.5rem;
-    border-radius: 6px;
-    background-color: var(--second-color);
-    box-shadow: var(--shadow);
-}
-.about-me-text{
-    padding: 1em;
-}
-.EmissiosInfo{
-    width: 95vw;
-    padding: 0.5rem;
-    margin-inline: 1rem;
-    border-radius: 6px;
-    background-color: var(--second-color);
-    box-shadow: var(--shadow);
-}
-.profile{
-    padding:1em;
-}
-.social-media li{
-    font-size: .75em;
-    display: block;
-}
-.social-media ul{
     padding: 0.3rem;
-    list-style-type: none;
+    margin: 0 0 1rem 0;
+    border-radius: 6px;
+    background-color:#fff;
+    box-shadow: var(--shadow);
+    color: #FF5A60;
 }
-/* table css */
 table{
-    width: 85%;
+    width:100%;
     border: 1px solid #000;
-    border-color: gray;
+    border-color: black;
 }
 th, td {
     width: 15%;
@@ -134,42 +40,17 @@ th, td {
     border-collapse: collapse;
     padding: 0.3em;
     caption-side: bottom;
+    font-size: large;
+    font-weight: 500;
 }
-tbody tr:nth-child(even)
-{
-  background:#whitesmoke;
-}
-tbody tr:nth-child(odd)
-{
-  background: #d5f4e6;
+tbody tr{
+  background:#ffffec;
+  font-weight: bold;
 }
 th
 {
-    background: #80ced6;
-    color: darkblue;
+    background: white;
+    color: #608f90;
+    font-weight: bolder;
 }
-/* contact form css */
-.contact-form{
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    text-align: center;
-    width: 80vw;
-    padding: 1rem;
-    margin: 1rem;
-    border-radius: 6px;
-    background-color: var(--second-color);
-    box-shadow: var(--shadow);
-}
-.contact{
-    text-align: left;
-    margin: 0 auto;
-    padding-top: 1rem;
-}
-.footer{
-    margin-top: 1rem;
-    width: 100vw;
-    background-color: var(--fourth-color);
-    color: #fff;
-    text-align: center;
-}
+/* FF5A60 */

@@ -39,9 +39,9 @@ def creating_db():
     moving_airbnb2017_to_db = airbnb2017.to_sql('airbnb2017', con=engine, if_exists='append')
 
 def check_db(table_name):
-    with engine.connect() as conn:
-        rows = conn.execute(f"SELECT * FROM {table_name};")
-        return [row for row in rows]
+    df= pd.read_sql_table(table_name, con=engine)
+    while True:
+        yield df
 
 if (__name__ == "__main__"):
      creating_db()
