@@ -19,6 +19,8 @@ app.config["SECRET_KEY"]=b'_5#y2L"F4Q7zeec]/'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///stroke_data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 
+
+
 data1= next(check_db("airbnb2017"))
 data2= next(check_db("updated_airbnb2017"))
 
