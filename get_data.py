@@ -45,4 +45,4 @@ def check_db(table_name):
 
 if (__name__ == "__main__"):
      creating_db()
-     check_db(table_name)
+     check_db(table_name="airbnb2017")
